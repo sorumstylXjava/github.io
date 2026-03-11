@@ -24,7 +24,6 @@
     {"@context":"https://schema.org","@type":"WebSite","name":"Java_nih_deks","url":"https://sorumstylxjava.github.io/","description":"Android system modification and performance tools by Java_nih_deks.","author":{"@type":"Person","name":"Java_nih_deks"}}
     </script>
 
-    <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5565071752876543" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -83,17 +82,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* ════════════════════
-           SCROLLBAR
-        ════════════════════ */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-gray); }
         ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
 
-        /* ════════════════════
-           NAV
-        ════════════════════ */
         nav {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
@@ -135,7 +128,6 @@
             flex-shrink: 0;
         }
 
-        /* Nav search — visible on desktop */
         .nav-search {
             flex: 1;
             max-width: 380px;
@@ -192,10 +184,7 @@
         .nav-btn.active { background: var(--blue-light); color: var(--blue); font-weight: 500; }
         .nav-tg { color: var(--blue) !important; font-size: 1.1rem !important; padding: 6px 8px !important; }
         .nav-tg:hover { background: var(--blue-light) !important; }
-
-        /* ════════════════════
-           MAIN WRAPPER
-        ════════════════════ */
+        
         main {
             flex: 1;
             max-width: 1100px;
@@ -204,9 +193,6 @@
             width: 100%;
         }
 
-        /* ════════════════════
-           AD SLOTS
-        ════════════════════ */
         .ad-slot {
             width: 100%;
             background: var(--surface);
@@ -222,16 +208,10 @@
             text-transform: uppercase;
         }
 
-        /* ════════════════════
-           PAGE ANIM
-        ════════════════════ */
         .page { animation: pgIn 0.2s ease; }
         @keyframes pgIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
         .hidden { display: none !important; }
 
-        /* ════════════════════
-           SECTION TITLE
-        ════════════════════ */
         .section-title {
             font-family: 'Fraunces', serif;
             font-size: clamp(1.6rem, 4vw, 2.2rem);
@@ -249,9 +229,6 @@
             margin-bottom: 0;
         }
 
-        /* ════════════════════
-           BADGE
-        ════════════════════ */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -269,11 +246,6 @@
         .badge-gray   { color: var(--text-dim); background: var(--bg-gray); border-color: var(--border); }
         .badge-yellow { color: var(--yellow); background: var(--yellow-light); border-color: #fde68a; }
 
-        /* ════════════════════════════════
-           HOME PAGE
-        ════════════════════════════════ */
-
-        /* ── Hero ── */
         .hero {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -333,9 +305,7 @@
             gap: 8px;
             align-items: flex-end;
         }
-        @media (max-width: 600px) { .hero-right { align-items: flex-start; } }
-
-        /* ── Filters ── */
+        @media (max-width: 600px) { .hero-right { align-items: flex-start;
         .filter-bar {
             display: flex;
             align-items: center;
@@ -358,7 +328,6 @@
         .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
         .filter-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: 500; }
 
-        /* Mobile search (below hero, shown only on mobile) */
         .mobile-search {
             display: none;
             position: relative;
@@ -380,7 +349,6 @@
         .mobile-search input::placeholder { color: var(--text-faint); }
         .mobile-search input:focus { border-color: var(--blue); }
 
-        /* ── Module Grid ── */
         #module-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -484,9 +452,6 @@
         }
         #no-results i { font-size: 2rem; color: var(--text-faint); display: block; margin-bottom: 12px; }
 
-        /* ════════════════════════════════
-           CHANGELOG / UPDATES SECTION
-        ════════════════════════════════ */
         .updates-section {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -538,9 +503,6 @@
             gap: 10px;
         }
 
-        /* ════════════════════════════════
-           DETAIL PAGE
-        ════════════════════════════════ */
         .back-btn {
             display: inline-flex;
             align-items: center;
@@ -575,7 +537,6 @@
             box-shadow: var(--shadow-sm);
         }
 
-        /* Banner */
         .banner-wrap {
             width: 100%;
             background: var(--bg-gray);
@@ -619,7 +580,6 @@
             margin-bottom: 22px;
         }
 
-        /* Sub-headings inside detail */
         .sub-heading {
             font-size: 0.72rem;
             font-weight: 600;
@@ -633,7 +593,6 @@
         }
         .sub-heading::after { content:''; flex:1; height:1px; background:var(--border); }
 
-        /* Features grid */
         #detail-features {
             list-style: none;
             display: grid;
@@ -657,7 +616,6 @@
             margin-top: 2px;
         }
 
-        /* Notes */
         .notes-block {
             background: var(--yellow-light);
             border: 1px solid #fde68a;
@@ -684,7 +642,6 @@
         }
         #detail-notes li::before { content: '•'; color: var(--yellow); flex-shrink: 0; }
 
-        /* Credits & Thanks */
         .credits-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -708,7 +665,6 @@
             line-height: 1.8;
         }
 
-        /* Install steps */
         .install-list {
             list-style: none;
             counter-reset: step;
@@ -744,7 +700,6 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        /* Download */
         .download-wrap { display: flex; flex-direction: column; gap: 8px; }
         .btn-primary {
             display: inline-flex;
@@ -776,7 +731,6 @@
             letter-spacing: 0.02em;
         }
 
-        /* Sidebar */
         .detail-sidebar { display: flex; flex-direction: column; gap: 16px; }
 
         .sidebar-card {
@@ -844,9 +798,6 @@
         }
         .share-btn:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); }
 
-        /* ════════════════════
-           ABOUT PAGE
-        ════════════════════ */
         .about-wrap { max-width: 720px; }
         .about-card {
             background: var(--surface);
@@ -889,9 +840,6 @@
         }
         .connect-btn:hover { background: var(--blue); color: #fff; }
 
-        /* ════════════════════
-           FOOTER
-        ════════════════════ */
         footer {
             background: var(--surface);
             border-top: 1px solid var(--border);
@@ -915,10 +863,6 @@
         }
         .footer-inner a:hover { color: var(--blue); }
         .footer-links { display: flex; gap: 20px; align-items: center; }
-
-        /* ════════════════════
-           TOAST
-        ════════════════════ */
         .toast {
             position: fixed;
             bottom: 24px;
@@ -940,7 +884,6 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: #4ade80; }
 
-        /* Utility */
         .mt-4  { margin-top: 16px; }
         .mt-6  { margin-top: 24px; }
         .mt-8  { margin-top: 32px; }
@@ -951,7 +894,6 @@
 </head>
 <body>
 
-    <!-- Toast -->
     <div class="toast" id="toast"><i class="fa-solid fa-check"></i> <span id="toast-msg"></span></div>
 
     <nav>
@@ -982,10 +924,8 @@
 
     <main>
 
-        <!-- ══════ HOME ══════ -->
         <div id="home-page" class="page">
 
-            <!-- Hero -->
             <div class="hero">
                 <div class="hero-left">
                     <div class="mb-4">
@@ -1016,19 +956,16 @@
                 </div>
             </div>
 
-            <!-- AdSense Header -->
             <div class="ad-slot mb-6" style="height:90px;">
                 <ins class="adsbygoogle" style="display:block;width:100%;height:90px" data-ad-client="ca-pub-5565071752876543" data-ad-slot="AUTO" data-ad-format="horizontal"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
 
-            <!-- Mobile search -->
             <div class="mobile-search">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="mobile-search-input" placeholder="Search releases..." autocomplete="off" oninput="handleSearch(this.value)">
             </div>
 
-            <!-- Filter bar -->
             <div class="filter-bar">
                 <span style="font-size:0.8rem; color:var(--text-dim); margin-right:4px;">Filter:</span>
                 <button class="filter-btn active" onclick="filterCards('all', this)">All</button>
@@ -1043,7 +980,6 @@
                 No releases found matching your search.
             </div>
 
-            <!-- AdSense Footer -->
             <div class="ad-slot mt-8" style="height:250px;">
                 <ins class="adsbygoogle" style="display:block;width:100%;height:250px" data-ad-client="ca-pub-5565071752876543" data-ad-slot="AUTO" data-ad-format="rectangle"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
