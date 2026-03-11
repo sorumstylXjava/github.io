@@ -304,12 +304,12 @@
                 </div>
                 <div class="detail-sidebar">
                     <div class="sidebar-card">
-                        <div class="sidebar-title">App Information</div>
+                        <div class="sidebar-title" id="sb-info-title">App Information</div>
                         <div class="info-row"><span class="info-label">Version</span><span class="info-value blue" id="sb-version"></span></div>
                         <div class="info-row"><span class="info-label">Type</span><span class="info-value" id="sb-type"></span></div>
                         <div class="info-row"><span class="info-label">Price</span><span class="info-value" style="color:var(--green)">Free</span></div>
                         <div class="info-row"><span class="info-label">Platform</span><span class="info-value">Android</span></div>
-                        <div class="info-row"><span class="info-label">Developer</span><span class="info-value">Java_nih_deks</span></div>
+                        <div class="info-row"><span class="info-label">Developer</span><span class="info-value" id="sb-developer"></span></div>
                     </div>
                     <div class="sidebar-card">
                         <div class="sidebar-title">Compatibility</div>
@@ -379,7 +379,7 @@
                     { label: 'Root Support',        supported: true  },
                     { label: 'Shizuku (Non-Root)',  supported: true  },
                     { label: 'ARM & ARM64',         supported: true  },
-                    { label: 'x86 / x86_64',        supported: false },
+                    { label: 'x86 / x86_64',        supported: false }
                 ],
                 features: [
                     'FPS Monitor (Root)', 'CPU Info', 'Refreshed UI', 'Non-Root Support via Shizuku',
@@ -396,6 +396,7 @@
                 ],
                 credits: ['@AduhaiWelewele', '@HoyoSlave', '@Nekotor1999', '@anomaly_arc', '@Shemywifee'],
                 specialThanks: '@zuanvfx01 — Thank you for the tremendous help.',
+                developer: 'Java_nih_deks',
                 install: [
                     'Download the APK from the release link below.',
                     'Install the APK on your Android device.',
@@ -420,14 +421,15 @@
                     { label: 'Root Support',        supported: true  },
                     { label: 'Shizuku (Non-Root)',  supported: true  },
                     { label: 'ARM & ARM64',         supported: true  },
-                    { label: 'x86 / x86_64',        supported: false },
+                    { label: 'x86 / x86_64',        supported: false }
                 ],
                 features: [
-                    'Smooth rendering on rooted and non-rooted devices',
+                    'Smooth rendering on rooted and non-rooted devices'
                 ],
                 notes: [],
                 credits: [],
                 specialThanks: '',
+                developer: 'Java_nih_deks',
                 install: [
                     'Download the module file.',
                     'Open Magisk / KernelSU, select Install from Storage.',
@@ -435,8 +437,8 @@
                     'Root users: reboot the device. Non-root users: apply directly.'
                 ],
                 downloadLink: 'https://sfl.gl/kRCnrk'
-            },
-,
+            }
+
             {
                 id: 'bleble-potion',
                 title: 'Bleble Potion',
@@ -446,8 +448,9 @@
                 status: 'Latest Release',
                 date: 'mar 11,2026',
                 bannerImg: 'https://mir-s3-cdn-cf.behance.net/project_modules/max_3840_webp/d8a9e2209656435.6735af787aa28.png',
-                shortDesc: 'Blebleble potion's is a plugin that contains a lots of tweak tools such as potion (disable tracing,stop some logging,stop some profiling), setprop tweaks',
-                icon: 'fa-layer-group',
+                shortDesc: 'Blebleble potions is a plugin that contains a lots of tweak tools such as potion (disable tracing,stop some logging,stop some profiling), setprop tweaks',
+                icon: 'fa-rocket',
+                developer: '@AduhaiWelewele',
                 compatibility: [
                     { label: 'Android 8.0+',       supported: true  },
                     { label: 'Root Support',        supported: true  },
@@ -455,13 +458,13 @@
                     { label: 'ARM & ARM64',         supported: true  },
                     { label: 'x86 / x86_64',        supported: false },
                 ],
-                features: ['-downscale cli', '-disable tracing', '-minimize log', '-set surfaceflinger as realtime performance-disable tracing', '-minimize log', '-set surfaceflinger as realtime performance'],
-                notes: ['@AduhaiWelewele'],
+                features: ['downscale cli', 'disable tracing', 'minimize log', 'set surfaceflinger as realtime performance'],
+                notes: [],
                 credits: [],
                 specialThanks: '',
-                install: ['download module', 'open AxManager,install from storage', 'and wait for complete instalation'],
+                install: ['Download module', 'open AxManager,install form storage', 'then waiting for flash complate'],
                 downloadLink: 'https://drive.google.com/drive/folders/1wNVs5ImjlrsAJ_VPfVsDXWwbzcW1oZW2'
-            }
+            },
         ];
 
         let currentMod = null;
@@ -618,6 +621,8 @@
             document.getElementById('detail-short-desc').textContent = mod.shortDesc;
             document.getElementById('sb-version').textContent        = mod.version;
             document.getElementById('sb-type').textContent           = mod.type;
+            document.getElementById('sb-developer').textContent      = mod.developer || 'Java_nih_deks';
+            document.getElementById('sb-info-title').textContent     = mod.type === 'Module' ? 'Module Information' : 'App Information';
             document.getElementById('detail-features').innerHTML     = mod.features.map(f => `<li><i class="fa-solid fa-check"></i>${f}</li>`).join('');
             const nc = document.getElementById('notes-container');
             if (mod.notes?.length) { nc.classList.remove('hidden'); document.getElementById('detail-notes').innerHTML = mod.notes.map(n => `<li>${n}</li>`).join(''); }
