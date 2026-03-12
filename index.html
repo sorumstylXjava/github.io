@@ -386,7 +386,7 @@
                 bannerImg: 'https://raw.githubusercontent.com/sorumstylXjava/Bug/refs/heads/main/IMG_20260311_092033_320.jpg',
                 shortDesc: 'Advanced performance application for Android system optimization. Supports both Root and Non-Root execution via Shizuku integration.',
                 icon: 'fa-microchip',
-                previousVersions: [{"version": "v8.2", "date": "jan 31,2026", "downloadLink": "https://sfl.gl/vdKhNh"}],
+                previousVersions: [{"version": "v8.2", "date": "jan 31,2026", "downloadLink": "https://sfl.gl/vdKhNh", "features": ["FPS Monitor (Root)", "CPU Info", "Non-Root Support via Shizuku", "Downscale (Root & Non-Root)", "Graphics Driver Override", "Performance Profile (Root)", "Smart Cache Cleaner", "Background App Killer", "GPU 2D Render Mode", "Scale Animation Control", "IO Scheduler Tuning", "VM Memory Tweak", "TCP Low Latency", "Lock FPS", "GameBoost Tab"]}],
                 compatibility: [
                     { label: 'Android 8.0+',       supported: true  },
                     { label: 'Root Support',        supported: true  },
@@ -655,6 +655,7 @@
                 version: prev.version,
                 date: prev.date,
                 downloadLink: prev.downloadLink,
+                features: prev.features && prev.features.length ? prev.features : parent.features,
                 status: 'Previous Release',
                 previousVersions: []
             }), parentId);
