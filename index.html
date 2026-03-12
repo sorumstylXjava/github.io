@@ -646,9 +646,11 @@
             openDetailWithMod(mod, null);
         }
 
-        function openPrevVersion(parentId, prev) {
+        function openPrevVersion(parentId, idx) {
             const parent = modulesData.find(m => m.id === parentId);
             if (!parent) return;
+            const prev = parent.previousVersions[idx];
+            if (!prev) return;
             openDetailWithMod(Object.assign({}, parent, {
                 version: prev.version,
                 date: prev.date,
@@ -694,8 +696,8 @@
             if (prevs.length) {
                 pvc.classList.remove('hidden');
                 const pid = parentId || mod.id;
-                pvl.innerHTML = prevs.map(p => `
-                    <div class="version-item" onclick="openPrevVersion('${pid}', ${JSON.stringify(p).replace(/'/g, '&#39;')})">
+                pvl.innerHTML = prevs.map((p, i) => `
+                    <div class="version-item" onclick="openPrevVersion('${pid}', ${i})">
                         <div class="version-item-left">
                             <span class="version-item-ver">${p.version}</span>
                             <span class="version-item-date">${p.date}</span>
