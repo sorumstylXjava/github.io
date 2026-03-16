@@ -71,6 +71,21 @@
         }
 
         .hidden-page { display: none !important; }
+        .article-body p { color: #475569; font-size: 0.92rem; line-height: 1.8; margin-bottom: 1rem; }
+        .article-body h3 { font-size: 1rem; font-weight: 700; color: #0f172a; margin: 1.4rem 0 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid #e2e8f0; }
+        .article-body ul { padding-left: 1.25rem; margin-bottom: 1rem; }
+        .article-body ul li { color: #475569; font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.3rem; list-style-type: disc; }
+        .article-body strong { color: #0f172a; font-weight: 600; }
+        .article-body table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-bottom: 1rem; }
+        .article-body th { background: #f1f5f9; padding: 8px 12px; text-align: left; font-weight: 700; color: #334155; border: 1px solid #e2e8f0; }
+        .article-body td { padding: 8px 12px; color: #475569; border: 1px solid #e2e8f0; }
+        .article-body code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 0.82rem; font-family: monospace; color: #7c3aed; }
+        .dark .article-body p, .dark .article-body ul li { color: #cbd5e1; }
+        .dark .article-body h3 { color: #f1f5f9; border-bottom-color: #334155; }
+        .dark .article-body strong { color: #f1f5f9; }
+        .dark .article-body th { background: #263148; color: #cbd5e1; border-color: #334155; }
+        .dark .article-body td { color: #cbd5e1; border-color: #334155; }
+        .dark .article-body code { background: #263148; color: #a78bfa; }
 
         .nav-btn { color: #64748b; }
         .nav-btn.nav-active { color: #3b82f6; background: #f1f5f9; }
@@ -121,11 +136,12 @@
                 </div>
 
                 <div class="hidden md:flex items-center gap-1">
-                    <button onclick="showPage('home')"    id="nav-home"    class="nav-btn nav-active px-4 py-2 rounded-lg text-sm font-semibold transition-all">Home</button>
-                    <button onclick="showPage('about')"   id="nav-about"   class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">About</button>
-                    <button onclick="showPage('faq')"     id="nav-faq"     class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">FAQ</button>
-                    <button onclick="showPage('privacy')" id="nav-privacy" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">Privacy</button>
-                    <button onclick="showPage('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">Contact</button>
+                    <button onclick="showPage('home')"     id="nav-home"     class="nav-btn nav-active px-4 py-2 rounded-lg text-sm font-semibold transition-all">Home</button>
+                    <button onclick="showPage('articles')" id="nav-articles" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">Articles</button>
+                    <button onclick="showPage('about')"    id="nav-about"    class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">About</button>
+                    <button onclick="showPage('faq')"      id="nav-faq"      class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">FAQ</button>
+                    <button onclick="showPage('privacy')"  id="nav-privacy"  class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">Privacy</button>
+                    <button onclick="showPage('contact')"  id="nav-contact"  class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all">Contact</button>
                 </div>
 
                 <div class="flex items-center gap-3">
@@ -153,8 +169,9 @@
                     <input type="text" id="nav-search-input-mobile" placeholder="Search..." onkeyup="syncSearch(this.value)"
                            class="w-full pl-9 pr-4 py-2.5 bg-slate-800 border border-slate-700 text-slate-200 placeholder-slate-500 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:outline-none">
                 </div>
-                <button onclick="showPage('home');    toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">Home</button>
-                <button onclick="showPage('about');   toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">About</button>
+                <button onclick="showPage('home');     toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">Home</button>
+                <button onclick="showPage('articles'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">Articles</button>
+                <button onclick="showPage('about');    toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">About</button>
                 <button onclick="showPage('faq');     toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">FAQ</button>
                 <button onclick="showPage('privacy'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">Privacy Policy</button>
                 <button onclick="showPage('contact'); toggleMobileMenu()" class="block w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 font-semibold">Contact</button>
@@ -478,6 +495,64 @@
             </div>
         </div>
 
+        <!-- ===== ARTICLES PAGE ===== -->
+        <div id="articles-page" class="page-section hidden-page fade-in max-w-4xl mx-auto">
+            <h2 class="text-4xl font-extrabold mb-2 text-center text-slate-900 dark:text-white">Articles</h2>
+            <p class="text-center text-slate-500 dark:text-slate-400 mb-10 text-sm">Guides and deep dives on Android modding, rooting, and performance tweaks.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div onclick="openArticle('magisk-vs-kernelsu')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-orange-400 to-red-500 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-code-branch"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-orange-500 mb-2">Root</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Magisk vs KernelSU vs APatch — What's the Difference?</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">A breakdown of the three major root solutions — architecture, pros, cons, and which fits your use case.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+                <div onclick="openArticle('shizuku-setup')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-400 to-cyan-500 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-plug"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-blue-500 mb-2">Non-Root</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">How to Setup and Connect Shizuku on Android</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">Step-by-step guide to getting Shizuku running using Wireless Debugging — no root required.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+                <div onclick="openArticle('what-is-shizuku')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-blue-500 to-violet-500 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-circle-info"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-violet-500 mb-2">Non-Root</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">What is Shizuku and What Can You Do With It?</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">Shizuku lets apps run with elevated ADB permissions without root — here is what it enables.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+                <div onclick="openArticle('boost-fps')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-green-400 to-teal-500 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-green-500 mb-2">Performance</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">How to Actually Boost FPS on Android</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">What actually works, what does not, and why most FPS booster apps are a waste of time.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+                <div onclick="openArticle('root-vs-nonroot')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-yellow-400 to-orange-500 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-yellow-500 mb-2">Root</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">Root vs Non-Root for Android Tweaking — Which One?</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">A practical comparison of what you can and cannot do with each approach.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+                <div onclick="openArticle('what-is-axmanager')" class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-violet-500 to-purple-600 flex items-center justify-center text-white text-lg mb-4 shadow-md group-hover:scale-110 transition-transform"><i class="fa-solid fa-cubes"></i></div>
+                    <div class="text-xs font-bold uppercase tracking-wider text-purple-500 mb-2">Non-Root</div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-primary transition-colors">What is AxManager and How to Use It</h3>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-3">AxManager is a non-root module manager running on Axeron — its own independent privileged service.</p>
+                    <div class="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">Read more <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ARTICLE DETAIL PAGE ===== -->
+        <div id="article-detail-page" class="page-section hidden-page fade-in max-w-3xl mx-auto">
+            <button onclick="showPage('articles')" class="mb-6 flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-medium group">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i> Back to Articles
+            </button>
+            <div id="article-content"></div>
+        </div>
+
     </main>
 
     <footer class="bg-darkcard border-t border-slate-800 py-10 mt-auto">
@@ -492,8 +567,9 @@
                         <div class="text-xs text-slate-500">Android System Tools</div>
                     </div>
                 </div>
-                <div class="flex items-center gap-6 text-sm text-slate-400">
-                    <a href="#" onclick="showPage('about');return false;"   class="hover:text-primary transition-colors font-medium">About</a>
+                <div class="flex flex-wrap items-center justify-center gap-4 text-sm text-slate-400">
+                    <a href="#" onclick="showPage('about');return false;"    class="hover:text-primary transition-colors font-medium">About</a>
+                    <a href="#" onclick="showPage('articles');return false;" class="hover:text-primary transition-colors font-medium">Articles</a>
                     <a href="#" onclick="showPage('faq');return false;"     class="hover:text-primary transition-colors font-medium">FAQ</a>
                     <a href="#" onclick="showPage('privacy');return false;" class="hover:text-primary transition-colors font-medium">Privacy</a>
                     <a href="#" onclick="showPage('contact');return false;" class="hover:text-primary transition-colors font-medium">Contact</a>
@@ -728,7 +804,7 @@
 
         function showPage(pageId) {
             resetDownloadButton();
-            ['home', 'detail', 'about', 'privacy', 'faq', 'contact'].forEach(p => {
+            ['home', 'detail', 'about', 'privacy', 'faq', 'contact', 'articles', 'article-detail'].forEach(p => {
                 document.getElementById(`${p}-page`).classList.add('hidden-page');
             });
             document.getElementById(`${pageId}-page`).classList.remove('hidden-page');
@@ -1056,6 +1132,233 @@
             renderFaqs();
             gasGetAll();
         });
+
+        const articlesData = {
+            'magisk-vs-kernelsu': {
+                title: "Magisk vs KernelSU vs APatch — What's the Difference?",
+                category: 'Root', categoryColor: 'text-orange-500',
+                icon: 'fa-code-branch', iconBg: 'from-orange-400 to-red-500',
+                content: `
+                    <p>All three give you root access, but they work very differently under the hood.</p>
+                    <h3>Magisk</h3>
+                    <p>Magisk creates a virtual overlay on top of your system partition — modifying the system without actually touching it. Root can be hidden from apps via DenyList.</p>
+                    <ul>
+                        <li><strong>Works on:</strong> Most unlocked bootloader devices</li>
+                        <li><strong>Root method:</strong> Patches boot image (init_boot / boot)</li>
+                        <li><strong>Modules:</strong> Large ecosystem, thousands available</li>
+                        <li><strong>Systemless:</strong> Yes</li>
+                        <li><strong>Play Integrity:</strong> Can be bypassed with extra modules</li>
+                    </ul>
+                    <p><strong>Best for:</strong> General users who want a stable, well-supported root with a big module library.</p>
+                    <h3>KernelSU</h3>
+                    <p>KernelSU runs root entirely inside the kernel — no modified boot image to look for, making it much harder to detect.</p>
+                    <ul>
+                        <li><strong>Works on:</strong> Devices with GKI or custom-compiled kernel</li>
+                        <li><strong>Root method:</strong> Kernel module</li>
+                        <li><strong>Modules:</strong> Compatible with Magisk modules via KSUD</li>
+                        <li><strong>Detection resistance:</strong> Significantly higher than Magisk</li>
+                        <li><strong>Play Integrity:</strong> Easier to pass without extra steps</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Users dealing with aggressive root detection in banking or game apps.</p>
+                    <h3>APatch</h3>
+                    <p>APatch patches the kernel directly from the boot image — no need for a custom kernel. A hybrid between Magisk and KernelSU.</p>
+                    <ul>
+                        <li><strong>Works on:</strong> Most Android 8+ devices without a custom kernel</li>
+                        <li><strong>Root method:</strong> Kernel patch via boot image</li>
+                        <li><strong>Modules:</strong> Supports Magisk modules and KPM</li>
+                        <li><strong>Detection resistance:</strong> High — kernel-level like KernelSU</li>
+                        <li><strong>Maturity:</strong> Relatively new, ecosystem still growing</li>
+                    </ul>
+                    <p><strong>Best for:</strong> Users who want kernel-level root without needing a GKI or custom kernel.</p>
+                    <h3>Quick Comparison</h3>
+                    <div class="overflow-x-auto"><table><thead><tr><th></th><th>Magisk</th><th>KernelSU</th><th>APatch</th></tr></thead><tbody><tr><td>Detection Resistance</td><td>Medium</td><td>High</td><td>High</td></tr><tr><td>Module Ecosystem</td><td>Large</td><td>Medium</td><td>Growing</td></tr><tr><td>Device Compatibility</td><td>Wide</td><td>Limited (GKI)</td><td>Wide</td></tr><tr><td>Custom Kernel Required</td><td>No</td><td>Sometimes</td><td>No</td></tr></tbody></table></div>
+                    <h3>Which Should You Use?</h3>
+                    <p>If you want reliability and a big module library — go with Magisk. If banking/game apps keep detecting root — try KernelSU (GKI) or APatch (non-GKI). No single best answer, it depends on your device.</p>
+                `
+            },
+            'shizuku-setup': {
+                title: 'How to Setup and Connect Shizuku on Android',
+                category: 'Non-Root', categoryColor: 'text-blue-500',
+                icon: 'fa-plug', iconBg: 'from-blue-400 to-cyan-500',
+                content: `
+                    <p>Shizuku lets apps run commands with elevated ADB privileges without root. Here is exactly how to set it up.</p>
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>Android 11 or higher</li>
+                        <li>Shizuku app installed from Play Store or GitHub</li>
+                        <li>Developer Options enabled</li>
+                    </ul>
+                    <h3>Step 1 — Enable Developer Options</h3>
+                    <p>Go to <strong>Settings → About Phone → Build Number</strong> and tap it 7 times.</p>
+                    <h3>Step 2 — Enable Wireless Debugging</h3>
+                    <p>Go to <strong>Settings → Developer Options → Wireless Debugging</strong> and toggle it on.</p>
+                    <h3>Step 3 — Pair Shizuku</h3>
+                    <p>Open Shizuku, tap <strong>Pairing</strong>. Then go to <strong>Wireless Debugging → Pair Device with Pairing Code</strong> and enter the 6-digit code into Shizuku.</p>
+                    <h3>Step 4 — Start Shizuku</h3>
+                    <p>Tap <strong>Start</strong> in Shizuku. Status will show "Shizuku is running."</p>
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>Shizuku stops on reboot — open the app and tap Start again, no need to re-pair</li>
+                        <li>Wireless Debugging must stay enabled</li>
+                        <li>Some MIUI/HyperOS devices restrict Wireless Debugging</li>
+                        <li>Android 10 and below requires the ADB via PC method</li>
+                    </ul>
+                `
+            },
+            'what-is-shizuku': {
+                title: 'What is Shizuku and What Can You Do With It?',
+                category: 'Non-Root', categoryColor: 'text-violet-500',
+                icon: 'fa-circle-info', iconBg: 'from-blue-500 to-violet-500',
+                content: `
+                    <p>Shizuku opens up elevated ADB-level access to apps without requiring root or an unlocked bootloader.</p>
+                    <h3>What is Shizuku?</h3>
+                    <p>Shizuku runs a privileged service using ADB permissions and exposes those permissions to other apps via an API. Apps can then do things that normally require root — like modifying system settings, managing apps, or accessing restricted APIs — all without rooting.</p>
+                    <h3>How is it Different From Root?</h3>
+                    <p>Root gives full unrestricted system access. Shizuku gives ADB-level access — elevated but not full root. Your device stays locked from Google's perspective, so banking apps and Google Pay still work fine.</p>
+                    <h3>What You Can Do With Shizuku</h3>
+                    <ul>
+                        <li>Apply system tweaks — animation scale, display density, performance parameters</li>
+                        <li>Silent app install and uninstall</li>
+                        <li>Debloat — remove system apps without root</li>
+                        <li>Run Shizuku-compatible performance apps like XianTian Pro</li>
+                        <li>Access restricted APIs that regular apps cannot touch</li>
+                    </ul>
+                    <h3>What Shizuku Cannot Do</h3>
+                    <ul>
+                        <li>Modify kernel parameters — requires root</li>
+                        <li>Flash system partitions</li>
+                        <li>Run Magisk or KernelSU modules</li>
+                        <li>Access other apps data — sandbox still enforced</li>
+                    </ul>
+                    <h3>Is it Safe?</h3>
+                    <p>Yes — Shizuku is open source by RikkaApps and widely trusted. Only grant Shizuku permissions to apps you trust.</p>
+                `
+            },
+            'boost-fps': {
+                title: 'How to Actually Boost FPS on Android',
+                category: 'Performance', categoryColor: 'text-green-500',
+                icon: 'fa-gauge-high', iconBg: 'from-green-400 to-teal-500',
+                content: `
+                    <p>Most FPS booster apps on the Play Store do nothing. Here is what actually affects gaming performance on Android.</p>
+                    <h3>What Actually Affects FPS</h3>
+                    <p>FPS is limited by three things: the GPU rendering frames, the CPU feeding data to it, and thermal throttling slowing both down when the device heats up. Any tweak that does not address one of these three does nothing meaningful.</p>
+                    <h3>Unlock the Refresh Rate — Free, No Root</h3>
+                    <p>Many devices default to 60Hz even when they support 90Hz or 120Hz. Go to <strong>Settings → Display → Refresh Rate</strong> and set it to maximum. Check in-game settings too — many games have their own FPS cap.</p>
+                    <h3>Reduce Background Load — No Root</h3>
+                    <p>Close background apps before gaming. Disable background sync and notifications during your session. These reduce CPU interrupt load and heat output.</p>
+                    <h3>Downscale Resolution — Root or Shizuku</h3>
+                    <p>Rendering at a lower resolution reduces pixels the GPU processes per frame — one of the most effective FPS improvements. Apps like XianTian Pro support Downscale via both Root and Shizuku. 80% of native resolution can give a significant bump with barely noticeable quality loss in fast-paced games.</p>
+                    <h3>Disable Thermal Throttling — Root Only</h3>
+                    <p>Android throttles CPU and GPU aggressively at temperature limits. With root, you can adjust this via system props for more sustained performance — at the cost of more heat and faster battery drain.</p>
+                    <h3>IO Scheduler and VM Tweaks — Root</h3>
+                    <p>A game-optimized IO scheduler reduces storage read latency. VM tweaks like adjusting swappiness reduce frame stutter from memory management. Subtle but they add up, especially on mid-range devices.</p>
+                    <h3>What Does Not Work</h3>
+                    <ul>
+                        <li><strong>RAM Cleaner apps</strong> — Android LMK already handles this. Third-party cleaners often kill processes Android intentionally kept warm, causing more jank</li>
+                        <li><strong>Fake Game Mode toggles</strong> — if an app just claims to boost without doing anything measurable, it is not doing anything</li>
+                        <li><strong>CPU frequency apps without root</strong> — unprivileged apps cannot change CPU governor or frequency</li>
+                        <li><strong>Clearing cache constantly</strong> — cache makes loading faster, clearing it does the opposite</li>
+                    </ul>
+                    <h3>Summary</h3>
+                    <p>Unlock your refresh rate, reduce background load, downscale if needed, and use root-level tweaks for thermal and IO control. Everything else is placebo.</p>
+                `
+            },
+            'root-vs-nonroot': {
+                title: 'Root vs Non-Root for Android Tweaking — Which One?',
+                category: 'Root', categoryColor: 'text-yellow-500',
+                icon: 'fa-scale-balanced', iconBg: 'from-yellow-400 to-orange-500',
+                content: `
+                    <p>Root gives you more power. Non-root is safer and easier. The gap between them has gotten smaller — here is a breakdown of what each can and cannot do.</p>
+                    <h3>What Root Unlocks</h3>
+                    <ul>
+                        <li>Full filesystem access — read and write anywhere</li>
+                        <li>Kernel-level tweaks — CPU governor, IO scheduler, thermal control</li>
+                        <li>System partition modifications — remove any system app</li>
+                        <li>Deep hardware control — GPU frequency, display calibration at driver level</li>
+                        <li>Magisk module ecosystem</li>
+                        <li>Hosts-level ad blocking — affects all apps and browsers</li>
+                    </ul>
+                    <h3>Trade-offs of Root</h3>
+                    <ul>
+                        <li>Requires unlocked bootloader — voids warranty on most devices</li>
+                        <li>Banking apps may stop working — manageable with DenyList</li>
+                        <li>OTA updates may fail or need manual handling</li>
+                        <li>A bad module can bootloop — requires recovery knowledge</li>
+                    </ul>
+                    <h3>What Non-Root Can Do</h3>
+                    <ul>
+                        <li>System settings tweaks — animation scale, density, display parameters</li>
+                        <li>Silent app install/uninstall and permission management</li>
+                        <li>Performance tweaks — downscale, background process limits</li>
+                        <li>Debloat without touching partitions</li>
+                        <li>ADB-level API access via Shizuku or Axeron</li>
+                    </ul>
+                    <h3>What Non-Root Cannot Do</h3>
+                    <ul>
+                        <li>Kernel parameter changes — CPU governor, scheduler, frequency</li>
+                        <li>Deep thermal control</li>
+                        <li>System partition writes</li>
+                        <li>Magisk or KernelSU modules</li>
+                    </ul>
+                    <h3>Which Should You Use?</h3>
+                    <p>If you want maximum control and understand the risks — root. If you want meaningful tweaks without touching the bootloader — Shizuku or Axeron gets you about 70-80% of the way there. Many users run both.</p>
+                `
+            },
+            'what-is-axmanager': {
+                title: 'What is AxManager and How to Use It',
+                category: 'Non-Root', categoryColor: 'text-purple-500',
+                icon: 'fa-cubes', iconBg: 'from-violet-500 to-purple-600',
+                content: `
+                    <p>AxManager is a non-root module manager for Android. It runs on top of the Axeron privileged service — its own independent server similar in concept to Shizuku, but built specifically for the AxManager ecosystem.</p>
+                    <h3>What is Axeron?</h3>
+                    <p>Axeron is AxManager's own privileged service, comparable to Shizuku but independent. Like Shizuku, it connects via ADB Wireless Debugging to gain elevated permissions — but it is a separate service built specifically for the AxManager module ecosystem, not the Shizuku API.</p>
+                    <h3>How Axeron Connects</h3>
+                    <p>The connection method is the same as Shizuku — ADB Wireless Debugging. Enable Wireless Debugging in Developer Options, then pair Axeron through AxManager the same way you would pair Shizuku. No root required.</p>
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li>Android 11 or higher</li>
+                        <li>AxManager app installed</li>
+                        <li>Developer Options and Wireless Debugging enabled</li>
+                        <li>Modules that declare <code>axeronPlugin=13000</code> in their metadata</li>
+                    </ul>
+                    <h3>How to Get Started</h3>
+                    <p><strong>1.</strong> Enable Wireless Debugging in Developer Options.</p>
+                    <p><strong>2.</strong> Open AxManager and start the Axeron service — pair it via Wireless Debugging when prompted.</p>
+                    <p><strong>3.</strong> Download a compatible module — any module on this site tagged with AxManager supports it.</p>
+                    <p><strong>4.</strong> In AxManager go to <strong>Modules → Install from Storage</strong>, select the zip file, and wait for the flash to complete.</p>
+                    <p><strong>5.</strong> Module is now active. No reboot required for most non-root modules.</p>
+                    <h3>What AxManager Modules Can Do</h3>
+                    <ul>
+                        <li>Apply setprop tweaks — system properties affecting performance and behavior</li>
+                        <li>Disable system tracing and profiling — reduces background CPU overhead</li>
+                        <li>Modify SurfaceFlinger parameters for smoother rendering</li>
+                        <li>Apply display and animation tweaks</li>
+                        <li>Adjust memory management parameters within ADB-accessible limits</li>
+                    </ul>
+                    <h3>Is AxManager Compatible With Rooted Devices?</h3>
+                    <p>Yes. Modules tagged with both root and AxManager work on both setups. On a rooted device the root path is used for deeper access. On non-rooted devices with Axeron, the AxManager path is used. The module detects the environment at runtime.</p>
+                `
+            }
+        };
+
+        function openArticle(id) {
+            const art = articlesData[id];
+            if (!art) return;
+            document.getElementById('article-content').innerHTML = `
+                <div class="flex items-start gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr ${art.iconBg} flex items-center justify-center text-white text-xl shadow-lg flex-shrink-0">
+                        <i class="fa-solid ${art.icon}"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold uppercase tracking-wider ${art.categoryColor} mb-1">${art.category}</div>
+                        <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white leading-tight">${art.title}</h1>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-darkcard rounded-2xl border border-slate-200 dark:border-slate-700 p-6 md:p-8 article-body">
+                    ${art.content}
+                </div>`;
+            showPage('article-detail');
+        }
     </script>
 </body>
 </html>
