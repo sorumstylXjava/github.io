@@ -821,6 +821,10 @@
 
         function showPage(pageId) {
             resetDownloadButton();
+            // Update URL hash
+            if (pageId === 'home') {
+                history.pushState(null, '', window.location.pathname);
+            }
             ['home', 'detail', 'about', 'privacy', 'faq', 'contact', 'articles', 'article-detail'].forEach(p => {
                 document.getElementById(`${p}-page`).classList.add('hidden-page');
             });
@@ -924,7 +928,8 @@
 
         function copyPostLink() {
             const mod = modulesData.find(m => m.downloadLink === currentDownloadUrl);
-            const text = mod ? `${window.location.href}#${mod.id}` : window.location.href;
+            const base = window.location.href.split('#')[0];
+            const text = mod ? `${base}#${mod.id}` : base;
             navigator.clipboard.writeText(text).then(() => {
                 const btn = document.getElementById('btn-copy-link');
                 const orig = btn.innerHTML;
@@ -996,6 +1001,8 @@
             if (!mod) return;
 
             currentDownloadUrl  = mod.downloadLink;
+            // Set URL hash supaya link bisa di-share dan di-copy
+            history.pushState(null, '', '#' + id);
 
             // Handle unavailable download
             const dlBtn = document.getElementById('btn-download');
@@ -1189,6 +1196,24 @@
             renderHome();
             renderFaqs();
             gasGetAll();
+
+            // Handle direct link dengan #id — langsung buka detail modul
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const mod = modulesData.find(m => m.id === hash);
+                if (mod) openDetail(hash);
+            }
+        });
+
+        // Handle back/forward browser navigation
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                const mod = modulesData.find(m => m.id === hash);
+                if (mod) openDetail(hash);
+            } else {
+                showPage('home');
+            }
         });
 
         const articlesData = {
