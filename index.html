@@ -821,10 +821,6 @@
 
         function showPage(pageId) {
             resetDownloadButton();
-            // Update URL hash
-            if (pageId === 'home') {
-                history.pushState(null, '', window.location.pathname);
-            }
             ['home', 'detail', 'about', 'privacy', 'faq', 'contact', 'articles', 'article-detail'].forEach(p => {
                 document.getElementById(`${p}-page`).classList.add('hidden-page');
             });
@@ -833,6 +829,7 @@
             const activeNav = document.getElementById(`nav-${pageId}`);
             if (activeNav) activeNav.classList.add('nav-active');
             if (pageId === 'home') {
+                history.pushState(null, '', window.location.pathname);
                 const d = document.getElementById('nav-search-input');
                 const m = document.getElementById('nav-search-input-mobile');
                 const h = document.getElementById('home-search-input');
@@ -1001,8 +998,6 @@
             if (!mod) return;
 
             currentDownloadUrl  = mod.downloadLink;
-            // Set URL hash supaya link bisa di-share dan di-copy
-            history.pushState(null, '', '#' + id);
 
             // Handle unavailable download
             const dlBtn = document.getElementById('btn-download');
@@ -1072,6 +1067,8 @@
 
             resetDownloadButton();
             showPage('detail');
+            // Set URL hash supaya link bisa di-copy dan di-share
+            history.pushState({ modId: id }, '', '#' + id);
         }
 
         function startDownloadTimer(btn) {
@@ -1197,20 +1194,20 @@
             renderFaqs();
             gasGetAll();
 
-            // Handle direct link dengan #id — langsung buka detail modul
+            // Buka langsung ke detail kalau URL punya #id
             const hash = window.location.hash.replace('#', '');
             if (hash) {
                 const mod = modulesData.find(m => m.id === hash);
-                if (mod) openDetail(hash);
+                if (mod) {
+                    setTimeout(() => openDetail(hash), 50);
+                }
             }
         });
 
-        // Handle back/forward browser navigation
-        window.addEventListener('hashchange', () => {
-            const hash = window.location.hash.replace('#', '');
-            if (hash) {
-                const mod = modulesData.find(m => m.id === hash);
-                if (mod) openDetail(hash);
+        // Handle browser back/forward
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.modId) {
+                openDetail(e.state.modId);
             } else {
                 showPage('home');
             }
