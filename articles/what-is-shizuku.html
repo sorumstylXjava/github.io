@@ -138,6 +138,23 @@
                     </ul>
                     <h3>Is it Safe?</h3>
                     <p>Yes — Shizuku is open source by RikkaApps and widely trusted. Only grant Shizuku permissions to apps you trust.</p>
+    
+                    <h3>Who Made Shizuku?</h3>
+                    <p>Shizuku is developed by RikkaApps, the same developer behind other popular Android tools like Riru and Sui. The project is open source and available on GitHub. RikkaApps has a strong reputation in the Android modding community for building well-engineered, privacy-respecting tools.</p>
+
+                    <h3>How Does Shizuku Work Technically?</h3>
+                    <p>When Shizuku starts, it launches a privileged Java process using ADB. This process has the same permissions as an ADB shell session. Shizuku then exposes this process to other apps through a bound service using Android's AIDL mechanism. Apps communicate with Shizuku's service to run operations with elevated privileges without ever having those privileges themselves.</p>
+                    <p>This architecture means Shizuku acts as a permission broker — you control exactly which apps get access, and Shizuku handles the actual privileged operations on their behalf.</p>
+
+                    <h3>Does Shizuku Work Without Wireless Debugging?</h3>
+                    <p>On Android 11 and above, Wireless Debugging is the standard method and requires no PC. On older Android versions, you need to start Shizuku via ADB from a PC. If you have root access, there is also a root-based start method that does not require ADB at all and survives reboots automatically.</p>
+
+                    <h3>Shizuku and Battery Life</h3>
+                    <p>Shizuku's background service is lightweight and has minimal impact on battery life. The service itself consumes very little CPU or memory when idle. The Wireless Debugging connection stays active in the background, but in practice the battery impact is negligible — typically less than 1% additional drain per day based on community reports.</p>
+
+                    <h3>Popular Apps That Use Shizuku</h3>
+                    <p>The Shizuku ecosystem has grown substantially. Notable apps include Canta for removing system apps, App Ops for granular permission control, Blocker for app component management, and Hail for app freezing. XianTian Pro also supports Shizuku for its non-root performance tweaks, making it accessible to users who have not unlocked their bootloader.</p>
+    
     </div>
 
     <!-- AdSense bottom -->

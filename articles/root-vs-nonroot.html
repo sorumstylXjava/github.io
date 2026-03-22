@@ -150,6 +150,25 @@
                     </ul>
                     <h3>Which Should You Use?</h3>
                     <p>If you want maximum control and understand the risks — root. If you want meaningful tweaks without touching the bootloader — Shizuku or Axeron gets you about 70-80% of the way there. Many users run both.</p>
+    
+                    <h3>The Bootloader Unlock Question</h3>
+                    <p>Root requires an unlocked bootloader. This process varies significantly by manufacturer. Google Pixel devices are straightforward to unlock. Samsung devices in most regions have a hardware fuse that permanently trips when you unlock, affecting Samsung Pay. Xiaomi requires waiting 7 days after requesting unlock permission through their servers.</p>
+                    <p>Before committing to root, research the specific unlock process for your exact device model and region. Some devices cannot be unlocked at all.</p>
+
+                    <h3>OTA Updates With Root</h3>
+                    <p>OTA system updates become more complicated with root. With Magisk, you can often update by patching the new boot image after the OTA downloads. Many rooted users prefer to wait a few days after an OTA release to see if the community has worked out the update process before proceeding.</p>
+                    <p>Non-root setups via Shizuku or Axeron have zero impact on OTA updates. You can update normally and just restart the service afterward.</p>
+
+                    <h3>Banking Apps and Root Detection</h3>
+                    <p>Modern banking apps use Google Play Integrity API to check device integrity. A rooted device will fail this check by default. With Magisk's DenyList and modules like Play Integrity Fix, many banking apps can be made to work again. KernelSU and APatch tend to have better baseline results because their root implementation is harder to detect. However, this is an ongoing cat-and-mouse game.</p>
+                    <p>Non-root setups have no issues with banking apps whatsoever — this is one of the biggest practical advantages of the Shizuku and Axeron approach.</p>
+
+                    <h3>Practical Recommendation by Use Case</h3>
+                    <p><strong>Better performance tweaks:</strong> Non-root with Shizuku or Axeron covers downscaling, animation tweaks, and system property changes without risk.</p>
+                    <p><strong>Remove system bloatware:</strong> Non-root works for most cases. Shizuku-based tools can uninstall system apps without root.</p>
+                    <p><strong>Full ad blocking:</strong> Root gives you hosts-file level blocking covering all apps. Non-root ad blocking is limited to browser-level solutions.</p>
+                    <p><strong>Maximum customization:</strong> Root is the only path. Custom kernels, deep system modifications, and full filesystem access require it.</p>
+    
     </div>
 
     <!-- AdSense bottom -->

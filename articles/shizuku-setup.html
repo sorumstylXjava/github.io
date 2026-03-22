@@ -138,6 +138,23 @@
                         <li>Some MIUI/HyperOS devices restrict Wireless Debugging</li>
                         <li>Android 10 and below requires the ADB via PC method</li>
                     </ul>
+    
+                    <h3>Why Does Shizuku Stop After Reboot?</h3>
+                    <p>Shizuku runs as a background service that connects to ADB via Wireless Debugging. When your device reboots, the ADB connection is dropped and the service shuts down. This is a limitation of how ADB works on consumer Android — there is no way to auto-start an ADB-connected service on boot without root.</p>
+                    <p>The workaround for rooted users is to use Shizuku's root mode, which starts automatically. For non-root users, you simply need to open the app and tap Start after each reboot. It takes about five seconds and does not require re-pairing.</p>
+
+                    <h3>How to Grant Shizuku Permission to Apps</h3>
+                    <p>Once Shizuku is running, apps that support it will prompt you for permission the first time they try to use the Shizuku API. A dialog will appear asking you to allow or deny. Grant it, and the app will have elevated ADB access for that session. You can manage which apps have Shizuku permission directly from the Shizuku app's main screen.</p>
+
+                    <h3>Which Apps Support Shizuku?</h3>
+                    <p>Many popular Android tools support Shizuku. Notable ones include XianTian Pro for performance tweaks, Canta for debloating system apps, App Ops for permission management, and Island for app sandboxing. AxManager uses its own Axeron service which works on the same ADB principle.</p>
+
+                    <h3>Is Wireless Debugging Safe to Leave On?</h3>
+                    <p>Wireless Debugging only works on your local network. Someone would need to be on the same Wi-Fi and go through the pairing process which requires physical access to your screen. For home use, leaving it on is generally fine. On public or untrusted networks, turning it off when not in use is a reasonable precaution.</p>
+
+                    <h3>Shizuku vs Running ADB Manually</h3>
+                    <p>Without Shizuku, you would need to connect your phone to a PC and run ADB commands manually every time. Shizuku eliminates the need for a PC entirely — once set up, it handles the ADB connection automatically and lets compatible apps use it through a clean permission API.</p>
+    
     </div>
 
     <!-- AdSense bottom -->

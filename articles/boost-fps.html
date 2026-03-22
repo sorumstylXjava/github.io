@@ -138,6 +138,24 @@
                     </ul>
                     <h3>Summary</h3>
                     <p>Unlock your refresh rate, reduce background load, downscale if needed, and use root-level tweaks for thermal and IO control. Everything else is placebo.</p>
+    
+                    <h3>Understanding Frame Time vs FPS</h3>
+                    <p>FPS is the average number of frames rendered per second. Frame time is how long each individual frame takes to render. A steady 60 FPS means each frame takes about 16.6 milliseconds. The problem is that averages hide spikes — you might average 60 FPS but have occasional frames that take 50ms, causing visible stutters. This is why a device can feel laggy even when the FPS counter looks fine.</p>
+                    <p>When optimizing for gaming, the goal is not just high average FPS but consistent frame times. Reducing frame time variance is often more impactful than chasing higher peak FPS numbers.</p>
+
+                    <h3>CPU Governor and Gaming</h3>
+                    <p>The CPU governor controls how the processor scales its frequency in response to load. Android's default governor is tuned for battery efficiency — it ramps up frequency slowly to avoid unnecessary power draw. For gaming, this means the CPU may be too slow to respond to sudden load spikes, causing frame drops at the start of intense scenes.</p>
+                    <p>With root access, switching to a more aggressive governor or tuning the schedutil parameters to ramp up faster can reduce these spikes. The trade-off is higher battery drain and more heat during gameplay.</p>
+
+                    <h3>Memory and ZRAM</h3>
+                    <p>On devices with limited RAM, the system may start swapping game data in and out of storage during gameplay, causing severe frame drops. Optimizing ZRAM settings can help — increasing ZRAM size gives the system more breathing room before it has to swap to slower storage. This is particularly relevant on 4GB RAM devices running modern games.</p>
+
+                    <h3>Game-Specific Settings Matter Most</h3>
+                    <p>Before any system-level tweaking, optimize the game's own graphics settings first. Lowering shadow quality, reducing draw distance, disabling anti-aliasing, and turning off post-processing effects can have a more immediate impact than any system tweak. Most competitive mobile gamers prioritize smooth frame rate over visual fidelity — lower settings often mean more consistent frame times.</p>
+
+                    <h3>GPU Rendering Modes</h3>
+                    <p>Android has a developer option called Force GPU rendering which makes apps use the GPU for 2D drawing operations. For some games this can improve smoothness, but for others it can hurt performance depending on the rendering pipeline. It is worth testing with your specific games. For rooted devices, modules can also adjust GPU governor settings to lock higher clock speeds during gameplay at the cost of power consumption.</p>
+    
     </div>
 
     <!-- AdSense bottom -->

@@ -144,6 +144,24 @@
                     </ul>
                     <h3>Is AxManager Compatible With Rooted Devices?</h3>
                     <p>Yes. Modules tagged with both root and AxManager work on both setups. On a rooted device the root path is used for deeper access. On non-rooted devices with Axeron, the AxManager path is used. The module detects the environment at runtime.</p>
+    
+                    <h3>AxManager vs Magisk — A Direct Comparison</h3>
+                    <p>Magisk and AxManager solve similar problems but for different audiences. Magisk is for rooted devices and can modify the system at a deep level including kernel parameters and system partitions. AxManager is for non-rooted devices and works within the limits of what ADB permissions allow through the Axeron service.</p>
+                    <p>The practical difference: if a tweak requires writing to /system or modifying kernel parameters, it needs Magisk. If a tweak can be done through system APIs or setprop commands accessible via ADB, AxManager can handle it. Many common performance tweaks fall into the second category.</p>
+
+                    <h3>What is axeronPlugin=13000?</h3>
+                    <p>This is a metadata flag in a module's configuration that declares compatibility with the Axeron service. When AxManager installs a module, it checks for this flag to know how to handle the module's scripts. Modules without this flag are treated as Magisk-only and will not run correctly in AxManager's non-root environment.</p>
+                    <p>Developers who build modules for both environments include this flag along with conditional logic in their scripts — checking whether root is available and falling back to ADB-compatible commands if not. This is how modules on this site work when tagged with both root and AxManager.</p>
+
+                    <h3>Axeron Service Lifecycle</h3>
+                    <p>Like Shizuku, the Axeron service stops when the device reboots. You need to restart it through AxManager after each reboot. This is a fundamental limitation of ADB-based privilege escalation on non-rooted Android. The reconnection process is quick — open AxManager, start the Axeron service, and it re-establishes the Wireless Debugging connection automatically if pairing was done previously.</p>
+
+                    <h3>Debugging Module Issues</h3>
+                    <p>If a module does not seem to be applying its tweaks after installation, the most common causes are: the Axeron service not running, the module requiring root-level access that Axeron cannot provide, or the module's scripts using commands not available in ADB shell. AxManager's logs section shows output from module scripts, which helps identify exactly where a failure occurs.</p>
+
+                    <h3>Building Your Own AxManager Module</h3>
+                    <p>AxManager modules follow a similar structure to Magisk modules — a zip file containing a module.prop for metadata and shell scripts for the actual operations. The key difference is that scripts must only use commands available in ADB shell. Adding axeronPlugin=13000 to module.prop declares Axeron compatibility. This makes the barrier to entry relatively low for anyone familiar with Android shell scripting.</p>
+    
     </div>
 
     <!-- AdSense bottom -->
