@@ -628,7 +628,7 @@
                     'Open the app, apply your preferred tweaks, and enjoy.'
                 ],
                 fileSize: '6.08MB',
-                downloadLink: 'https://sfl.gl/kj0qG'
+                downloadLink: 'https://www.mediafire.com/file/4g9vwen8jzppupn/JavaPro-Release-22727308226.zip/file'
             },
             {
                 id: 'RenderUI',
@@ -660,7 +660,7 @@
                     'Root users: reboot the device. Non-root users: apply directly.'
                 ],
                 fileSize: '10.72 KB',
-                downloadLink: 'https://sfl.gl/kRCnrk'
+                downloadLink: 'https://www.mediafire.com/file/gucgom41r6ofmpv/RenderUI-1.zip/file'
             },
             {
                 id: 'bleble-potion',
@@ -749,7 +749,7 @@
                 specialThanks: '',
                 install: ['Download TianYun.zip', 'Open AxManager/Ksu/Magisk', 'Go to modules and install from storage', 'select the zip file', 'if you root reboot required', 'Done'],
                 fileSize: '597.54KB',
-                downloadLink: 'https://sfl.gl/kRTm8j6J'
+                downloadLink: 'https://www.mediafire.com/file/k8gfotzspl31i9r/TianYun%25E8%25BF%25AA%25E5%2585%258B.zip/file'
             },
 
             {
@@ -776,7 +776,7 @@
                 credits: [],
                 specialThanks: '',
                 install: ['Download application', 'Install application', 'Grand root to the application', 'Done'],
-                downloadLink: 'https://sfl.gl/InpTnpKv',
+                downloadLink: 'https://www.mediafire.com/file/sa3gbt7f98yn3t4/app-release.apk/file',
                 fileSize: '1.50 MB'
             },
 ];
@@ -955,6 +955,20 @@
             if (!mod) return;
 
             currentDownloadUrl  = mod.downloadLink;
+
+            // Handle unavailable download
+            const dlBtn = document.getElementById('btn-download');
+            if (!mod.downloadLink) {
+                dlBtn.disabled = true;
+                dlBtn.innerHTML = '<i class="fa-solid fa-clock"></i> Download Coming Soon';
+                dlBtn.style.background = '#475569';
+                dlBtn.style.boxShadow = 'none';
+            } else {
+                dlBtn.disabled = false;
+                dlBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down"></i> Download Now';
+                dlBtn.style.background = '';
+                dlBtn.style.boxShadow = '';
+            }
             window._currentModId = mod.id;
 
             loadBanner(mod);
