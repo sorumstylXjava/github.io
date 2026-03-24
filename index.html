@@ -373,6 +373,15 @@
                             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                         </div>
                         <hr class="my-4 border-slate-200 dark:border-slate-700">
+                        <!-- Previous Versions -->
+                        <div id="prev-versions-wrap" class="hidden">
+                            <hr class="my-4 border-slate-200 dark:border-slate-700">
+                            <h4 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+                                <i class="fa-solid fa-clock-rotate-left text-slate-400 mr-2"></i>Previous Versions
+                            </h4>
+                            <div id="prev-versions-list" class="space-y-2"></div>
+                        </div>
+
                         <div class="text-center">
                             <p class="text-xs text-slate-400 mb-3 font-medium uppercase tracking-wider">Support the Developer</p>
                             <div class="flex flex-col gap-2">
@@ -642,6 +651,8 @@
                     'Open the app, apply your preferred tweaks, and enjoy.'
                 ],
                 fileSize: '6.08MB',
+                previousVersions: [],
+
                 downloadLink: 'https://www.mediafire.com/file/4g9vwen8jzppupn/JavaPro-Release-22727308226.zip/file'
             },
             {
@@ -674,6 +685,8 @@
                     'Root users: reboot the device. Non-root users: apply directly.'
                 ],
                 fileSize: '10.72 KB',
+                previousVersions: [],
+
                 downloadLink: 'https://www.mediafire.com/file/gucgom41r6ofmpv/RenderUI-1.zip/file'
             },
             {
@@ -705,6 +718,8 @@
                     'Wait for flashing to complete.'
                 ],
                 fileSize: '24.5 KB',
+                previousVersions: [],
+
                 downloadLink: 'https://drive.google.com/drive/folders/1wNVs5ImjlrsAJ_VPfVsDXWwbzcW1oZW2'
             },
             {
@@ -736,6 +751,8 @@
                     'Wait until the flashing process is complete.'
                 ],
                 fileSize: '8.1 KB',
+                previousVersions: [],
+
                 downloadLink: 'https://t.me/archiverdcx/127'
             },
             {
@@ -763,6 +780,8 @@
                 specialThanks: '',
                 install: ['Download TianYun.zip', 'Open AxManager/Ksu/Magisk', 'Go to modules and install from storage', 'select the zip file', 'if you root reboot required', 'Done'],
                 fileSize: '597.54KB',
+                previousVersions: [],
+
                 downloadLink: 'https://www.mediafire.com/file/k8gfotzspl31i9r/TianYun%25E8%25BF%25AA%25E5%2585%258B.zip/file'
             },
 
@@ -791,7 +810,8 @@
                 specialThanks: '',
                 install: ['Download application', 'Install application', 'Grand root to the application', 'Done'],
                 downloadLink: 'https://www.mediafire.com/file/sa3gbt7f98yn3t4/app-release.apk/file',
-                fileSize: '1.50 MB'
+                fileSize: '1.50 MB',
+                previousVersions: []
             },
 ];
 
@@ -951,6 +971,58 @@
             });
         }
 
+        function openPrevVersion(modId, pvIdx) {
+            const mod = modulesData.find(m => m.id === modId);
+            if (!mod || !mod.previousVersions[pvIdx]) return;
+            const pv = mod.previousVersions[pvIdx];
+
+            // Buat objek sementara untuk ditampilkan di detail
+            const pvMod = {
+                ...mod,
+                version: pv.version,
+                date: pv.date,
+                downloadLink: pv.downloadLink,
+                fileSize: pv.fileSize || '',
+                status: 'Old Release',
+                previousVersions: [] // tidak tampilkan nested
+            };
+
+            currentDownloadUrl = pv.downloadLink;
+
+            // Update tampilan
+            document.getElementById('detail-title').textContent   = pvMod.title;
+            document.getElementById('detail-version').textContent = pvMod.version;
+            document.getElementById('detail-date').textContent    = pvMod.date;
+            document.getElementById('detail-filesize').textContent = pvMod.fileSize || 'N/A';
+
+            // Update badge versi
+            const badges = pvMod.tags.map(t =>
+                `<span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700">${t}</span>`
+            ).join('');
+            const oldBadge = `<span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 border border-orange-200 dark:border-orange-800">Old Release</span>`;
+            document.getElementById('detail-badges').innerHTML = badges + oldBadge;
+
+            // Update download button
+            const dlBtn = document.getElementById('btn-download');
+            if (!pv.downloadLink) {
+                dlBtn.disabled = true;
+                dlBtn.innerHTML = '<i class="fa-solid fa-clock"></i> Download Unavailable';
+                dlBtn.style.background = '#475569';
+                dlBtn.style.boxShadow = 'none';
+            } else {
+                dlBtn.disabled = false;
+                dlBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down text-xl"></i> <span>Download ' + pv.version + '</span>';
+                dlBtn.style.background = '';
+                dlBtn.style.boxShadow = '';
+            }
+
+            // Sembunyikan previous versions saat view versi lama
+            document.getElementById('prev-versions-wrap').classList.add('hidden');
+
+            // Scroll ke atas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function shareRelease() {
             const url = window.location.href;
             const mod = modulesData.find(m => m.downloadLink === currentDownloadUrl);
@@ -1055,6 +1127,24 @@
             } else { tc.classList.add('hidden'); }
 
             document.getElementById('detail-install').innerHTML = mod.install.map(s => `<li>${s}</li>`).join('');
+
+            // Render previous versions
+            const pvWrap = document.getElementById('prev-versions-wrap');
+            const pvList = document.getElementById('prev-versions-list');
+            if (mod.previousVersions && mod.previousVersions.length > 0) {
+                pvWrap.classList.remove('hidden');
+                pvList.innerHTML = mod.previousVersions.map((pv, idx) => `
+                    <button onclick="openPrevVersion('${mod.id}', ${idx})"
+                        class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-all group text-left">
+                        <div>
+                            <div class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">${pv.version}</div>
+                            <div class="text-xs text-slate-400 font-mono">${pv.date}</div>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-slate-300 dark:text-slate-600 group-hover:text-primary group-hover:translate-x-1 transition-all text-sm"></i>
+                    </button>`).join('');
+            } else {
+                pvWrap.classList.add('hidden');
+            }
 
             document.getElementById('detail-compat').innerHTML = (mod.compatibility || []).map(c => `
                 <li class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-2 last:border-0">
